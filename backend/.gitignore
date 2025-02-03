@@ -1,0 +1,37 @@
+# Node modules
+/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Dependency directories
+bower_components
+
+# Build directories
+/dist
+/build
+
+# VSCode settings
+.vscode/
+
+# IDE configurations
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+
+# npm package lock
+package-lock.json
+
+# Testing and coverage
+/coverage
