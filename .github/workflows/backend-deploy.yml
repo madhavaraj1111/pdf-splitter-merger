@@ -1,0 +1,55 @@
+name: Backend Deployment
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: backend # Make sure this path is correct
+
+      - name: Run Tests (if applicable)
+        run: npm test
+        working-directory: backend # Run tests, remove if not needed
+
+      - name: Build Backend (if applicable)
+        run: npm run build
+        working-directory: backend # Only if your backend has a build step
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: backend
+
+      - name: Deploy to Server (Modify for your use case)
+        run: |
+          echo "Deploying backend..."
+          # If using SSH to deploy, uncomment and modify this
+          # ssh user@your-server-ip "cd /path-to-backend && git pull && npm install && pm2 restart backend"
