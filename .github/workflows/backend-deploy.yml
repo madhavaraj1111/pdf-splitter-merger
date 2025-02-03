@@ -23,9 +23,15 @@ jobs:
         run: npm install
         working-directory: backend # Make sure this path is correct
 
-      - name: Run Tests (if applicable)
-        run: npm test
-        working-directory: backend # Run tests, remove if not needed
+      # Skipping the test step as there are no tests
+      # - name: Run Tests (if applicable)
+      #   run: npm test
+      #   working-directory: backend # Run tests, remove if not needed
+
+      # If you have a build step for your backend, uncomment this section
+      # - name: Build Backend (if applicable)
+      #   run: npm run build
+      #   working-directory: backend # Only if your backend has a build step
 
   deploy:
     needs: build
