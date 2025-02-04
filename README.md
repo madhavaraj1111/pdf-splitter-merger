@@ -22,7 +22,7 @@ This project is built using the **MERN stack** (MongoDB, Express.js, React.js, N
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend**: React.js (Vite) + Tailwind CSS + Ant Design
+- **Frontend**: React.js (Vite) + Tailwind CSS
 - **Backend**: Node.js + Express.js
 - **Database**: MongoDB Atlas
 - **Storage**: Multer for file handling
