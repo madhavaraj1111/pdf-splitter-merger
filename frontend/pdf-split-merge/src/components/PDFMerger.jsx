@@ -10,7 +10,7 @@ function PDFMerger({ isOpen, onClose }) {
 
   // Fetch uploaded files from backend
   useEffect(() => {
-    fetch("http://localhost:5000/files")
+    fetch("https://pdf-splitter-merger-backend.onrender.com/files")
       .then((res) => res.json())
       .catch((err) => console.error("Error fetching files:", err));
   }, []);
@@ -32,7 +32,7 @@ function PDFMerger({ isOpen, onClose }) {
         formData.append("files", file);
       });
 
-      fetch("http://localhost:5000/upload", {
+      fetch("https://pdf-splitter-merger-backend.onrender.com/upload", {
         method: "POST",
         body: formData,
       })
@@ -64,7 +64,7 @@ function PDFMerger({ isOpen, onClose }) {
     setIsLoading(true);
     const fileIds = fileList.map((file) => file._id); // Use MongoDB file IDs
 
-    fetch("http://localhost:5000/merge-pdfs", {
+    fetch("https://pdf-splitter-merger-backend.onrender.com/merge-pdfs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ fileIds }),
@@ -234,7 +234,7 @@ function PDFMerger({ isOpen, onClose }) {
               onClick={async () => {
                 try {
                   const response = await fetch(
-                    `http://localhost:5000/uploads/${mergedFile.fileName}`
+                    `https://pdf-splitter-merger-backend.onrender.com/uploads/${mergedFile.fileName}`
                   );
                   const blob = await response.blob();
                   const downloadURL = URL.createObjectURL(blob);
