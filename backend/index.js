@@ -8,7 +8,7 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const port = process.env.PORT|| 5000;
+const port = process.env.PORT || 5000;
 
 // 📌 MongoDB Connection with Retry Logic
 const mongoURI = process.env.MONGO_URI;
@@ -34,6 +34,14 @@ const FileSchema = new mongoose.Schema({
 const File = mongoose.model("File", FileSchema);
 
 // 📌 Middleware
+const corsOptions = {
+  origin: "*", // Replace "*" with your frontend URL if needed
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+};
+
+app.use(cors(corsOptions));
+
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // Serve static files
@@ -52,7 +60,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // 📌 Upload PDFs
-app.post("/upload", upload.array("files", 10), async (req, res) => {
+app.post("/upload", cors(), upload.array("files", 10), async (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: "No files uploaded" });

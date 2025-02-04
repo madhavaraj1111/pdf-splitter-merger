@@ -82,10 +82,13 @@ function PDFSplitter({ isOpen, onClose }) {
       formData.append("file", file);
       formData.append("pages", JSON.stringify(selectedPages));
 
-      const response = await fetch("https://pdf-splitter-merger-backend.onrender.com/split-pdf", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://pdf-splitter-merger-backend.onrender.com/split-pdf",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
