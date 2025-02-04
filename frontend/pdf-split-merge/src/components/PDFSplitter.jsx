@@ -39,7 +39,7 @@ function PDFSplitter({ isOpen, onClose }) {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/files")
+    fetch("https://pdf-splitter-merger-backend.onrender.com/files")
       .then((res) => res.json())
       .then((data) => {
         const filteredFiles = data.filter((file) => !file.isMerged); // Exclude merged files
@@ -56,7 +56,7 @@ function PDFSplitter({ isOpen, onClose }) {
           formData.append("file", file);
 
           const response = await axios.post(
-            "http://localhost:5000/get-pdf-pages",
+            "https://pdf-splitter-merger-backend.onrender.com/get-pdf-pages",
             formData,
             {
               headers: {
@@ -81,7 +81,7 @@ function PDFSplitter({ isOpen, onClose }) {
       formData.append("file", file);
       formData.append("pages", JSON.stringify(selectedPages));
 
-      const response = await fetch("http://localhost:5000/split-pdf", {
+      const response = await fetch("https://pdf-splitter-merger-backend.onrender.com/split-pdf", {
         method: "POST",
         body: formData,
       });
@@ -150,7 +150,7 @@ function PDFSplitter({ isOpen, onClose }) {
       formData.append("pages", JSON.stringify(validPages));
 
       const response = await axios.post(
-        "http://localhost:5000/split-pdf",
+        "https://pdf-splitter-merger-backend.onrender.com/split-pdf",
         formData,
         {
           headers: {
