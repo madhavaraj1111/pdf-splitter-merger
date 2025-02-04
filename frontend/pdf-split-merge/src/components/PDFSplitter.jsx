@@ -10,6 +10,7 @@ function PDFSplitter({ isOpen, onClose }) {
   const [error, setError] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [splitting, setSplitting] = useState(false);
+  const [fileList, setFileList] = useState([]);
 
   const start = Number(startPage);
   const end = Number(endPage);
