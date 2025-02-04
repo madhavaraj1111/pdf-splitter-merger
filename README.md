@@ -35,7 +35,7 @@ This project is built using the **MERN stack** (MongoDB, Express.js, React.js, N
 📦 pdf-splitter-merger
  ┣ 📂 frontend (React.js Vite)
  ┣ 📂 backend (Node.js, Express.js)
- ┣ 📂 uploads (Temporary PDF storage)
+ ┣ 📜 .gitignore
  ┣ 📜 package.json
  ┣ 📜 README.md
 ```
