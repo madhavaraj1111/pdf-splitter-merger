@@ -8,6 +8,7 @@ The **PDF Splitter & Merger** is a web-based tool that allows users to:
 This project is built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js) and is hosted on Render.
 
 🔗 **Live Application**: [PDF Splitter & Merger](https://pdf-splitter-merger.onrender.com)
+🔗 **GitHub Repository**: [PDF Splitter & Merger](https://github.com/madhavaraj1111/pdf-splitter-merger)
 
 ---
 
@@ -46,7 +47,7 @@ This project is built using the **MERN stack** (MongoDB, Express.js, React.js, N
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/pdf-splitter-merger.git
+git clone https://github.com/madhavaraj1111/pdf-splitter-merger.git
 cd pdf-splitter-merger
 ```
 
@@ -92,3 +93,8 @@ Contributions are welcome! Feel free to **fork**, create a new branch, and submi
 
 ## 📜 License
 This project is licensed under the **MIT License**.
+
+---
+
+## 📧 Contact
+For any queries or feedback, email at **madhavaraj1111@gmail.com**.
