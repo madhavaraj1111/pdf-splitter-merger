@@ -190,10 +190,15 @@ app.post("/split-pdf", upload.single("file"), async (req, res) => {
     const newFilePath = `uploads/split_${Date.now()}.pdf`;
     fs.writeFileSync(newFilePath, pdfBytes);
 
+    const backendUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://pdf-splitter-merger-backend.onrender.com"
+        : "http://localhost:5000";
     // Return the file path to be used for download in the frontend
+
     res.json({
       message: "PDF split successfully",
-      filePath: `http://localhost:5000/uploads/${path.basename(newFilePath)}`,
+      filePath: `${backendUrl}/uploads/${path.basename(newFilePath)}`,
     });
   } catch (error) {
     console.error("Error splitting PDF:", error);
