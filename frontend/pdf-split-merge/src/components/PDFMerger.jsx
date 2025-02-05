@@ -7,6 +7,7 @@ function PDFMerger({ isOpen, onClose }) {
   const [step, setStep] = useState("upload");
   const [isLoading, setIsLoading] = useState(false);
   const [mergedFile, setMergedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   // Fetch uploaded files from backend
   useEffect(() => {
@@ -17,12 +18,14 @@ function PDFMerger({ isOpen, onClose }) {
 
   // Handle file drop and upload
   const onDrop = useCallback((acceptedFiles) => {
+    setUploading(true);
     const pdfFiles = acceptedFiles.filter(
       (file) => file.type === "application/pdf"
     );
 
     if (pdfFiles.length !== acceptedFiles.length) {
       alert("Only PDF files are allowed.");
+      setUploading(false);
       return;
     }
 
@@ -40,7 +43,8 @@ function PDFMerger({ isOpen, onClose }) {
         .then((data) => {
           setFileList((prevFiles) => [...prevFiles, ...data.files]);
         })
-        .catch((err) => console.error("Error uploading files:", err));
+        .catch((err) => console.error("Error uploading files:", err))
+        .finally(() => setUploading(false));
     }
   }, []);
 
@@ -114,8 +118,18 @@ function PDFMerger({ isOpen, onClose }) {
               )}
             </div>
 
+            {/* Uploading Indicator */}
+            {uploading && (
+              <div className="mt-4 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-blue-600"></div>
+                <span className="ml-2 text-blue-600 font-semibold">
+                  Uploading...
+                </span>
+              </div>
+            )}
+
             {/* Uploaded Files List */}
-            {fileList.length > 0 && (
+            {fileList.length > 0 && !uploading && (
               <>
                 <div className="mb-4">
                   <h4 className="font-semibold text-gray-800">
